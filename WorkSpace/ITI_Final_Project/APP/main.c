@@ -21,29 +21,15 @@
 #include "../HAL/Servo_Driver/Servo_Interface.h"
 #include "../LIB/BIT_MATH.h"
 
+#define		Max_Pass_Digits		4
+
 u8 Global_u8SavedDoorPassLowByte;
 u8 Global_u8SavedDoorPassHighByte;
 u16 Global_u16EPROMDoorPass;
 u16 Global_u16EPROMPassAddress=50;
 void TempSensor(void);
 void DoorPass(void);
-void test(void){
-	u8 var =0;u8 var2 = 0;
-	
-	
-	TWI_voidMasterInit(0);
-	EEPROM_voidSendDataByte(0x01,0x00FF);
-	TIMER_delay_ms(300);
-	EEPROM_voidSendDataByte(0xFF,0x00F0);
-	TIMER_delay_ms(100);
-	// FA ==> 0xF0,   FC ==> 0x03,  AD ==> 0x04,  0x03F0 ==> 0x07  0x0300 ==> 0x0F
-	EEPROM_voidReadDataByte(&var,0x00FF);
-	TIMER_delay_ms(300);
-	EEPROM_voidReadDataByte(&var2,0x00F0);
-	DIO_voidSetPortValue(DIO_PORTA,var);
-	TIMER_delay_ms(3000);
-	DIO_voidSetPortValue(DIO_PORTA,var2);
-}
+void InitDoorPass(u16 );
 void main(void)
 {	
 	ADC_voidInit();
@@ -57,17 +43,10 @@ void main(void)
 	Servo_VoidInit();
 	
 	TWI_voidMasterInit(0);
-	// save initial password = 500
+	// save initial password = 100
 	/*Global_u16EPROMDoorPass=100;
+	InitDoorPass(Global_u16EPROMDoorPass);*/
 	
-	Global_u8SavedDoorPassLowByte=(u8)Global_u16EPROMDoorPass;
-	
-	Global_u8SavedDoorPassHighByte=(u8)(Global_u16EPROMDoorPass>>8);
-	EEPROM_voidSendDataByte(Global_u8SavedDoorPassLowByte,Global_u16EPROMPassAddress);
-	TIMER_delay_ms(300);
-	
-	EEPROM_voidSendDataByte(Global_u8SavedDoorPassHighByte,Global_u16EPROMPassAddress+10);
-	TIMER_delay_ms(300);*/
 	// read pass low byte
 	EEPROM_voidReadDataByte(&Global_u8SavedDoorPassLowByte,Global_u16EPROMPassAddress);
 	TIMER_delay_ms(300);
@@ -109,41 +88,77 @@ void TempSensor(void){
 }
 
 void DoorPass(){
+	/*To set new pass enter your old pass and press clear*/
+	/* max password digits is 4*/
 	
+	// pressed key
 	u8 Local_u8Keypad_Key=KPD_u8GetPressedKey();
+	// door status flag to indicate if the door is opened or closed
 	static u8 Local_u8DoorStatus=0;
+	// the password entered by the user
 	static u16 Local_u16DoorPassword=0;
+	// counter to the number of digits entered
+	static Local_u8DigitsCount=0;
 	
+	/* we have three cases in this function
+		* First : clear is pressed
+		* Second : Enter is pressed
+		* Third : digit is pressed
+	*/
+	
+	/*******************************************************************************************************************************************************************/
+	/* case user entered clear */
+		/* two cases to enter clear
+		* First : To set new pass
+		* Second : clear screen and clear the entered password 
+		*/
 	if(Local_u8Keypad_Key==KPD_CLEAR){
 		
-		//set new pass
+		// First case : set new pass
 		if(Local_u16DoorPassword==Global_u16EPROMDoorPass){
 			
 			LCD_voidClearDisplay();
 			// setting new password
-			
+				// clear all saved passes and digit counter
 				Global_u16EPROMDoorPass=0;
 				Local_u16DoorPassword=0;
+				Local_u8DigitsCount=0;
+				
 				LCD_voidSendString("Set new pass:");
 				Local_u8Keypad_Key=KPD_NO_PRESS;
 				while(Local_u8Keypad_Key != KPD_ENTER ){
 					
 					Local_u8Keypad_Key=KPD_u8GetPressedKey();
+					// check if the user entered more than 4 digits
+					if(Local_u8DigitsCount==Max_Pass_Digits+1){
+						LCD_voidClearDisplay();
+						LCD_voidSendString("ERROR !!!!");
+						LCD_voidGoTOXY(1,0);
+						LCD_voidSendString("Max Digits is 4");
+						Local_u8DigitsCount=0;
+						Global_u16EPROMDoorPass=0;
+					}
+					
 					if(Local_u8Keypad_Key==KPD_CLEAR){
+						Local_u8DigitsCount=0;
 						LCD_voidClearDisplay();
 						Global_u16EPROMDoorPass=0;
-						LCD_voidSendString("Set new pass:");
+					
 					}
 					else if(Local_u8Keypad_Key !=KPD_NO_PRESS && Local_u8Keypad_Key!=KPD_ENTER){
-						
+						// if it is the first digit that user enter --> clear any previous message on the screen
+						if(Local_u8DigitsCount==0)
+							LCD_voidClearDisplay();
 						LCD_voidSendData('*');
-						
+						Local_u8DigitsCount++;
 						Global_u16EPROMDoorPass=Global_u16EPROMDoorPass*10 +Local_u8Keypad_Key;
 					}
 					
 				}
 				LCD_voidClearDisplay();
 				LCD_voidSendString("pass is updated");
+				// reset counter
+				Local_u8DigitsCount=0;
 				Local_u8Keypad_Key=KPD_NO_PRESS;
 				// save the new pass to eeprom
 				// save low byte
@@ -156,17 +171,22 @@ void DoorPass(){
 				
 		}
 		
+		// Second case : to clear Screen or typed password
 		else{
 		LCD_voidClearDisplay();
 		Local_u16DoorPassword=0;
+		Local_u8DigitsCount=0;
 		
 		}
 	}
+	/******************************************************************************************************************************************************************/
+	/* case user pressed enter or equal */
 	else if(Local_u8Keypad_Key==KPD_ENTER){
 		
 		LCD_voidClearDisplay();
+		// check if entered pass is correct
 		 if(Local_u16DoorPassword==Global_u16EPROMDoorPass){
-			
+			// check door status
 			if(Local_u8DoorStatus==0){
 				LCD_voidSendString("Door is opened");
 				// run servo
@@ -186,21 +206,40 @@ void DoorPass(){
 		else
 			LCD_voidSendString("Wrong password !");
 			
+			// reset the entered password after typing enter 
 			Local_u16DoorPassword=0;
-		
+			Local_u8DigitsCount=0;
 	}
 	
+	/****************************************************************************************************************************************************************/
+	/* Case user pressed a digit key*/
 	else if(Local_u8Keypad_Key != KPD_NO_PRESS){
-		if(Local_u16DoorPassword==0)
+		// if it is the first digit that user enter --> clear any previous message on the screen
+		if(Local_u8DigitsCount==0)
 			LCD_voidClearDisplay();
+			
 		LCD_voidSendData('*');
+		
+		Local_u8DigitsCount++;
 		Local_u16DoorPassword=Local_u16DoorPassword*10 + Local_u8Keypad_Key;
+		
 		
 	}
 	
 	
 }
-
+void InitDoorPass(u16 Copy_Globalu16EPROMDoorPass ){
+	
+	Global_u8SavedDoorPassLowByte=(u8)Copy_Globalu16EPROMDoorPass;
+	
+	Global_u8SavedDoorPassHighByte=(u8)(Copy_Globalu16EPROMDoorPass>>8);
+	EEPROM_voidSendDataByte(Global_u8SavedDoorPassLowByte,Global_u16EPROMPassAddress);
+	TIMER_delay_ms(300);
+	
+	EEPROM_voidSendDataByte(Global_u8SavedDoorPassHighByte,Global_u16EPROMPassAddress+10);
+	TIMER_delay_ms(300);
+	
+}
 
 
 
