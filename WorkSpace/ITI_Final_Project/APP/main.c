@@ -21,17 +21,21 @@
 #include "../HAL/Servo_Driver/Servo_Interface.h"
 #include "../LIB/BIT_MATH.h"
 
-#define		Max_Pass_Digits		4
+#define		Max_Pass_Digits			4
+#define		SystemHasRunBefore		28
 
 u8 Global_u8SavedDoorPassLowByte;
 u8 Global_u8SavedDoorPassHighByte;
 u16 Global_u16EPROMDoorPass;
 u16 Global_u16EPROMPassAddress=50;
 void TempSensor(void);
-void DoorPass(void);
-void InitDoorPass(u16 );
+void void_Locker(void);
+void void_SetEPROMLockerPass(void);
+void void_GetEPROMLockerPass(void);
 void main(void)
 {	
+	u16 Local_u16EPROMSystemStateAddress=5;
+	u8 Local_u8EPROMSystemState=0;
 	ADC_voidInit();
 	DIO_voidSetPinDirection(DIO_PORTD,DIO_PIN6,DIO_OUTPUT);
 	DIO_voidSetPinDirection(DIO_PORTD,DIO_PIN7,DIO_OUTPUT);
@@ -43,22 +47,28 @@ void main(void)
 	Servo_VoidInit();
 	
 	TWI_voidMasterInit(0);
-	// save initial password = 100
-	/*Global_u16EPROMDoorPass=100;
-	InitDoorPass(Global_u16EPROMDoorPass);*/
 	
-	// read pass low byte
-	EEPROM_voidReadDataByte(&Global_u8SavedDoorPassLowByte,Global_u16EPROMPassAddress);
-	TIMER_delay_ms(300);
-	// read pass high byte
-	EEPROM_voidReadDataByte(&Global_u8SavedDoorPassHighByte,Global_u16EPROMPassAddress+10);
-	TIMER_delay_ms(300);
-	// combine the high and low byte
-	Global_u16EPROMDoorPass= ( (u16)(Global_u8SavedDoorPassHighByte<<8) )| Global_u8SavedDoorPassLowByte;
+	/*Read system state form EPROM to check if this is the first time to run the project*/
+	EEPROM_voidReadDataByte(&Local_u8EPROMSystemState,Local_u16EPROMSystemStateAddress);
+	if(Local_u8EPROMSystemState !=SystemHasRunBefore){
+		LCD_voidSendString("First Run");
+		// save the system state as has run before
+		Local_u8EPROMSystemState=SystemHasRunBefore;
+		// save initial password = 100
+		Global_u16EPROMDoorPass=1234;
+		void_SetEPROMLockerPass();
+		// save the system state to eprom
+		EEPROM_voidSendDataByte(Local_u8EPROMSystemState,Local_u16EPROMSystemStateAddress);
+		TIMER_delay_ms(300);
+	}
+	
+	// get the saved password and store it the global EPROM_variable
+	void_GetEPROMLockerPass();
+	
 	LCD_voidSendNumber(Global_u16EPROMDoorPass);
 	while(1){
 		
-		DoorPass();
+		void_Locker();
 		TempSensor();
 
 	}
@@ -68,7 +78,7 @@ void main(void)
 void TempSensor(void){
 	u8 Temp = ADC_u8StartConversion(0);
 	/*
-	 * LM35 Temperatur Sensor Vout Calculations with connection applied in proteus:
+	 * LM35 Temperature Sensor Vout Calculations with connection applied in proteus:
 	 * Vout = 10 mV/C
 	 * 25 C ===> (10*(10^-3)*25*2^8) / 5 = 12.8
 	 * 35 C ===> (10*(10^-3)*35*2^8) / 5 = 17.9
@@ -87,7 +97,7 @@ void TempSensor(void){
 	}
 }
 
-void DoorPass(){
+void void_Locker(){
 	/*To set new pass enter your old pass and press clear*/
 	/* max password digits is 4*/
 	
@@ -161,13 +171,7 @@ void DoorPass(){
 				Local_u8DigitsCount=0;
 				Local_u8Keypad_Key=KPD_NO_PRESS;
 				// save the new pass to eeprom
-				// save low byte
-				Global_u8SavedDoorPassLowByte=(u8)Global_u16EPROMDoorPass;
-				EEPROM_voidSendDataByte(Global_u8SavedDoorPassLowByte,Global_u16EPROMPassAddress);
-				TIMER_delay_ms(300);
-				// save high byte
-				Global_u8SavedDoorPassHighByte=(u8)(Global_u16EPROMDoorPass>>8);
-				EEPROM_voidSendDataByte(Global_u8SavedDoorPassHighByte,Global_u16EPROMPassAddress+10);
+				void_SetEPROMLockerPass();
 				
 		}
 		
@@ -228,11 +232,11 @@ void DoorPass(){
 	
 	
 }
-void InitDoorPass(u16 Copy_Globalu16EPROMDoorPass ){
+void void_SetEPROMLockerPass(void ){
 	
-	Global_u8SavedDoorPassLowByte=(u8)Copy_Globalu16EPROMDoorPass;
+	Global_u8SavedDoorPassLowByte=(u8)Global_u16EPROMDoorPass;
 	
-	Global_u8SavedDoorPassHighByte=(u8)(Copy_Globalu16EPROMDoorPass>>8);
+	Global_u8SavedDoorPassHighByte=(u8)(Global_u16EPROMDoorPass>>8);
 	EEPROM_voidSendDataByte(Global_u8SavedDoorPassLowByte,Global_u16EPROMPassAddress);
 	TIMER_delay_ms(300);
 	
@@ -240,7 +244,17 @@ void InitDoorPass(u16 Copy_Globalu16EPROMDoorPass ){
 	TIMER_delay_ms(300);
 	
 }
-
+void void_GetEPROMLockerPass(void){
+	
+	// read pass low byte
+	EEPROM_voidReadDataByte(&Global_u8SavedDoorPassLowByte,Global_u16EPROMPassAddress);
+	TIMER_delay_ms(300);
+	// read pass high byte
+	EEPROM_voidReadDataByte(&Global_u8SavedDoorPassHighByte,Global_u16EPROMPassAddress+10);
+	TIMER_delay_ms(300);
+	// combine the high and low byte
+	Global_u16EPROMDoorPass= ( (u16)(Global_u8SavedDoorPassHighByte<<8) )| Global_u8SavedDoorPassLowByte;
+}
 
 
 
