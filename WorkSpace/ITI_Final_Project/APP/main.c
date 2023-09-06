@@ -71,7 +71,7 @@ void main(void)
 	
 	/*Read system state form EPROM to check if this is the first time to run the project*/
 	EEPROM_voidReadDataByte(&Local_u8EPROMSystemState,Local_u16EPROMSystemStateAddress);
-	if(Local_u8EPROMSystemState !=SystemHasRunBefore){
+	if(Local_u8EPROMSystemState != SystemHasRunBefore){
 		LCD_voidSendString("First Run");
 		// save the system state as has run before
 		Local_u8EPROMSystemState=SystemHasRunBefore;
@@ -97,9 +97,9 @@ void main(void)
 	//Enable GIE
 	GIE_voidEnableGlobalInt();
 	// LED Pins
-	DIO_voidSetPinDirection(DIO_PORTC,DIO_PIN5,DIO_OUTPUT);
-	DIO_voidSetPinDirection(DIO_PORTC,DIO_PIN6,DIO_OUTPUT);
-	DIO_voidSetPinDirection(DIO_PORTC,DIO_PIN7,DIO_OUTPUT);
+	DIO_voidSetPinDirection(DIO_PORTC,LIGHT1,DIO_OUTPUT);
+	DIO_voidSetPinDirection(DIO_PORTC,LIGHT2,DIO_OUTPUT);
+	DIO_voidSetPinDirection(DIO_PORTC,LIGHT3,DIO_OUTPUT);
 
 	while(1){
 		/*USART is Controlled by ISR TIMER1_COMPB*/
@@ -281,6 +281,12 @@ void void_SetEPROMLockerPass(void ){
 	Global_u8SavedDoorPassLowByte=(u8)Global_u16EPROMDoorPass;
 	
 	Global_u8SavedDoorPassHighByte=(u8)(Global_u16EPROMDoorPass>>8);
+	
+	EEPROM_voidSendDataByte(Global_u8SavedDoorPassLowByte,Global_u16EPROMPassAddress);
+	TIMER_delay_ms(300);
+
+	EEPROM_voidSendDataByte(Global_u8SavedDoorPassHighByte,Global_u16EPROMPassAddress+10);
+	TIMER_delay_ms(300);
 }
 
 void void_GetEPROMLockerPass(void){
@@ -321,8 +327,8 @@ void USART_Start(void){
 
 	// Loop until reaching Max val of Input, if stucked Timer will INT and Time out
 	while (Max_Num) {
-		//Receive data element by element
-		TimeOut TimeOut_Err=100;
+		 //Receive data element by element
+		 TimeOut TimeOut_Err=100;
 		 TimeOut_Err = USART_u8TimeOUTReceiverData(&DataReceived[DataIdx]);
 		//DataReceived[DataIdx] = USART_u8ReceiverData();
 		if(TimeOut_Err == TimeOUT_Occured){
