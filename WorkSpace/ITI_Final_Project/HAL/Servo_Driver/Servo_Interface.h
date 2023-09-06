@@ -12,12 +12,12 @@
  * Calculations Depends on 8 MHz clock speed
  *
  */
-void Servo_VoidInit(void);
+void Servo_voidInit(void);
 
-void Servo_VoidDegree(u8 Copy_u8Degree);
+void Servo_voidDegree(u8 Copy_u8Degree);
 
 u16 Servo_u16GetTicks(void);
 
-void Servo_VoidReset(void);
+void Servo_voidReset(void);
 
 #endif /* HAL_SERVO_DRIVER_SERVO_INTERFACE_H_ */

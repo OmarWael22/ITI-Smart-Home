@@ -166,9 +166,9 @@ TWI_ErrStatus TWI_MasterReadDataByte(u8* Copy_Pu8DataByte)
 
 void TWI_SendStopCondition(void)
 {
-    /* generate stop condition on the bus /
+	/* generate stop condition on the bus */
+	SET_BIT(TWCR,TWSTO);
 
-    / Clear the interrupt flag to start the previous operation */
-    TWCR = (1<<TWINT)|(1<<TWEN)|
-    (1<<TWSTO);
+	/* Clear the interrupt flag to start the previous operation */
+	SET_BIT(TWCR,TWINT);
 }
