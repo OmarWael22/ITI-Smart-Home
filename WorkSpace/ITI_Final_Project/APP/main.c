@@ -82,11 +82,13 @@ void main(void)
 		EEPROM_voidSendDataByte(Local_u8EPROMSystemState,Local_u16EPROMSystemStateAddress);
 		TIMER_delay_ms(300);
 	}
+	else
+		LCD_voidSendString("System is On");
 
 	// get the saved password and store it the global EPROM_variable
 	void_GetEPROMLockerPass();
 	
-	LCD_voidSendNumber(Global_u16EPROMDoorPass);
+	//LCD_voidSendNumber(Global_u16EPROMDoorPass);
 	
 	// Initialize USART
 	USART_voidInit();
@@ -277,14 +279,14 @@ void void_Locker(){
 
 }
 void void_SetEPROMLockerPass(void ){
-	
+	// get low byte
 	Global_u8SavedDoorPassLowByte=(u8)Global_u16EPROMDoorPass;
-	
+	// get high byte
 	Global_u8SavedDoorPassHighByte=(u8)(Global_u16EPROMDoorPass>>8);
-	
+	// save low byte
 	EEPROM_voidSendDataByte(Global_u8SavedDoorPassLowByte,Global_u16EPROMPassAddress);
 	TIMER_delay_ms(300);
-
+	// save high byte
 	EEPROM_voidSendDataByte(Global_u8SavedDoorPassHighByte,Global_u16EPROMPassAddress+10);
 	TIMER_delay_ms(300);
 }
@@ -374,7 +376,7 @@ void USART_Start(void){
 	}
 	// Check First Undefined Val to be 1 or 2 or 3
 	// also, sending it to USART_voidProcessCommand to light correct led
-	// Receiving return value as indicator to uncorrect second undefined Val
+	// Receiving return value as indicator to incorrect second undefined Val
 	if(DataReceived[2]=='1')
 		Con_St = USART_voidProcessCommand(DataReceived[4],LIGHT1);
 	else if(DataReceived[2]=='2')
@@ -400,15 +402,24 @@ void USART_Start(void){
 
 ConditionsState USART_voidProcessCommand(u8 command,u8 Local_LightNum) {
 	ConditionsState Con_St = NoErrors; // Check Variable
+	LCD_voidClearDisplay();
 	//Check Command to turn Light on or off
 	if (command=='1') {
 		// Turning ON ROOM 1 LIGHT
 		DIO_voidSetPinValue(DIO_PORTC,Local_LightNum,DIO_HIGH);
+		LCD_voidSendString("ROOM ");
+		// display the room number
+		LCD_voidSendNumber(Local_LightNum-4);
+		LCD_voidSendString(" is ON");
 		Con_St = ROOM_LIGHT_ON;
 	}
 	else if ( command=='0') {
 		// Turning OFF ROOM 1 LIGHT
 		DIO_voidSetPinValue(DIO_PORTC,Local_LightNum,DIO_LOW);
+		LCD_voidSendString("ROOM ");
+		// display the room number
+		LCD_voidSendNumber(Local_LightNum-4);
+		LCD_voidSendString(" is OFF");
 		Con_St = ROOM_LIGHT_OFF;
 	}
 	else{ // IF input is not 0 nor 1 ==> INCORRECT INP
