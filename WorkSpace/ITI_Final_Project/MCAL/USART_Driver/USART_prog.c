@@ -81,7 +81,7 @@ TimeOut USART_u8TimeOUTReceiverData(u8* Copy_u8PTRReceivingData){
 		SET_BIT(TCCR1B,2);
 		
 	while(GET_BIT(UCSRA,7)==0){
-		WDT_voidReset();
+		
 		if(TCNT1>=TIMEOUTVALUE){
 			SET_BIT(UCSRA,7);
 			TCCR1B &= 0xF8;

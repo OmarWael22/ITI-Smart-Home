@@ -90,8 +90,6 @@ void main(void)
 	void_GetEPROMLockerPass();
 	
 	//LCD_voidSendNumber(Global_u16EPROMDoorPass);
-	//WDT
-	WDT_voidInit();
 	
 	// Initialize USART
 	USART_voidInit();
@@ -107,11 +105,9 @@ void main(void)
 	DIO_voidSetPinDirection(DIO_PORTC,LIGHT3,DIO_OUTPUT);
 
 	while(1){
-		WDT_voidReset();
 		/*USART is Controlled by ISR TIMER1_COMPB*/
 		USART_voidEnableRxINT();
 		//Call locker Control Function
-		WDT_voidReset();
 		void_Locker();
 		//Call Temperature Sensor Control Function
 		TempSensor();
@@ -282,9 +278,10 @@ void void_Locker(){
 				}
 			}*/
 			// reset the entered password after typing enter
-			Local_u16DoorPassword=0;
-			Local_u8DigitsCount=0;
+			
 		}
+		Local_u16DoorPassword=0;
+		Local_u8DigitsCount=0;
 	}
 
 	/****************************************************************************************************************************************************************/
@@ -452,7 +449,10 @@ ConditionsState USART_voidProcessCommand(u8 command,u8 Local_LightNum) {
 	else if ( command=='0') {
 		// Turning OFF ROOM 1 LIGHT
 		DIO_voidSetPinValue(DIO_PORTC,Local_LightNum,DIO_LOW);
-		
+		LCD_voidSendString("ROOM ");
+		// display the room number
+		LCD_voidSendNumber(Local_LightNum-4);
+		LCD_voidSendString(" is OFF");
 		Con_St = ROOM_LIGHT_OFF;
 	}
 	else{ // IF input is not 0 nor 1 ==> INCORRECT INP
