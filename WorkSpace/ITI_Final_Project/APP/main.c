@@ -205,6 +205,9 @@ void void_Locker(){
 						// if it is the first digit that user enter --> clear any previous message on the screen
 						if(Local_u8DigitsCount==0)
 							LCD_voidClearDisplay();
+						LCD_voidSendNumber(Local_u8Keypad_Key);
+						TIMER_delay_ms(1200);
+						LCD_voidGoTOXY(0,Local_u8DigitsCount);
 						LCD_voidSendData('*');
 						Local_u8DigitsCount++;
 						Global_u16EPROMDoorPass=Global_u16EPROMDoorPass*10 +Local_u8Keypad_Key;
@@ -238,14 +241,14 @@ void void_Locker(){
 		 if(Local_u16DoorPassword==Global_u16EPROMDoorPass){
 			// check door status
 			if(Local_u8DoorStatus==0){
-				LCD_voidSendString("Door is opened");
+				LCD_voidSendString("Locker is opened");
 				// run servo
 				Servo_voidDegree(180);
 				Local_u8DoorStatus=1;
 
 			}
 			else{
-				LCD_voidSendString("Door is Closed");
+				LCD_voidSendString("Locker is Closed");
 				// stop servo
 				Servo_voidDegree(0);
 				Local_u8DoorStatus=0;
@@ -267,7 +270,9 @@ void void_Locker(){
 		// if it is the first digit that user enter --> clear any previous message on the screen
 		if(Local_u8DigitsCount==0)
 			LCD_voidClearDisplay();
-
+		LCD_voidSendNumber(Local_u8Keypad_Key);
+		TIMER_delay_ms(1200);
+		LCD_voidGoTOXY(0,Local_u8DigitsCount);
 		LCD_voidSendData('*');
 
 		Local_u8DigitsCount++;

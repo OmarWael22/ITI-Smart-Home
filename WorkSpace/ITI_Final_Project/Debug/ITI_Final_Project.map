@@ -423,7 +423,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000     0x1530
+.text           0x00000000     0x1576
  *(.vectors)
  .vectors       0x00000000       0x54 D:/Colleage/colleage programs/Atmel/setup/7.0/Packs/atmel/ATmega_DFP/1.2.209/gcc/dev/atmega32/avr5/crtatmega32.o
                 0x00000000                __vector_default
@@ -504,232 +504,232 @@ END GROUP
                 0x0000010e       0x4a APP/main.o
                 0x0000010e                void_SetEPROMLockerPass
  .text.void_Locker
-                0x00000158      0x1c0 APP/main.o
+                0x00000158      0x206 APP/main.o
                 0x00000158                void_Locker
  .text.void_GetEPROMLockerPass
-                0x00000318       0x56 APP/main.o
-                0x00000318                void_GetEPROMLockerPass
- .text.main     0x0000036e       0xd6 APP/main.o
-                0x0000036e                main
+                0x0000035e       0x56 APP/main.o
+                0x0000035e                void_GetEPROMLockerPass
+ .text.main     0x000003b4       0xd6 APP/main.o
+                0x000003b4                main
  .text.USART_voidProcessCommand
-                0x00000444       0x80 APP/main.o
-                0x00000444                USART_voidProcessCommand
+                0x0000048a       0x80 APP/main.o
+                0x0000048a                USART_voidProcessCommand
  .text.USART_Start
-                0x000004c4      0x144 APP/main.o
-                0x000004c4                USART_Start
+                0x0000050a      0x144 APP/main.o
+                0x0000050a                USART_Start
  .text.EEPROM_voidSendDataByte
-                0x00000608       0x30 HAL/EPROM_Driver/EPROM_prog.o
-                0x00000608                EEPROM_voidSendDataByte
+                0x0000064e       0x30 HAL/EPROM_Driver/EPROM_prog.o
+                0x0000064e                EEPROM_voidSendDataByte
  .text.EEPROM_voidReadDataByte
-                0x00000638       0x3e HAL/EPROM_Driver/EPROM_prog.o
-                0x00000638                EEPROM_voidReadDataByte
+                0x0000067e       0x3e HAL/EPROM_Driver/EPROM_prog.o
+                0x0000067e                EEPROM_voidReadDataByte
  .text.KPD_voidInit
-                0x00000676       0x8e HAL/KEYPAD_Driver/KPD_prog.o
-                0x00000676                KPD_voidInit
+                0x000006bc       0x8e HAL/KEYPAD_Driver/KPD_prog.o
+                0x000006bc                KPD_voidInit
  .text.KPD_u8GetPressedKey
-                0x00000704      0x116 HAL/KEYPAD_Driver/KPD_prog.o
-                0x00000704                KPD_u8GetPressedKey
+                0x0000074a      0x116 HAL/KEYPAD_Driver/KPD_prog.o
+                0x0000074a                KPD_u8GetPressedKey
  .text.LCD_voidSendData
-                0x0000081a       0x44 HAL/LCD_Driver/LCD_prog.o
-                0x0000081a                LCD_voidSendData
+                0x00000860       0x44 HAL/LCD_Driver/LCD_prog.o
+                0x00000860                LCD_voidSendData
  .text.LCD_voidSendCommand
-                0x0000085e       0x44 HAL/LCD_Driver/LCD_prog.o
-                0x0000085e                LCD_voidSendCommand
+                0x000008a4       0x44 HAL/LCD_Driver/LCD_prog.o
+                0x000008a4                LCD_voidSendCommand
  .text.LCD_voidInit
-                0x000008a2       0x52 HAL/LCD_Driver/LCD_prog.o
-                0x000008a2                LCD_voidInit
+                0x000008e8       0x52 HAL/LCD_Driver/LCD_prog.o
+                0x000008e8                LCD_voidInit
  .text.LCD_voidClearDisplay
-                0x000008f4        0x8 HAL/LCD_Driver/LCD_prog.o
-                0x000008f4                LCD_voidClearDisplay
+                0x0000093a        0x8 HAL/LCD_Driver/LCD_prog.o
+                0x0000093a                LCD_voidClearDisplay
  .text.LCD_voidGoTOXY
-                0x000008fc       0x12 HAL/LCD_Driver/LCD_prog.o
-                0x000008fc                LCD_voidGoTOXY
+                0x00000942       0x12 HAL/LCD_Driver/LCD_prog.o
+                0x00000942                LCD_voidGoTOXY
  .text.LCD_voidSendString
-                0x0000090e       0x2c HAL/LCD_Driver/LCD_prog.o
-                0x0000090e                LCD_voidSendString
+                0x00000954       0x2c HAL/LCD_Driver/LCD_prog.o
+                0x00000954                LCD_voidSendString
  .text.LCD_voidSendNumber
-                0x0000093a       0x3e HAL/LCD_Driver/LCD_prog.o
-                0x0000093a                LCD_voidSendNumber
+                0x00000980       0x3e HAL/LCD_Driver/LCD_prog.o
+                0x00000980                LCD_voidSendNumber
  .text.Servo_voidInit
-                0x00000978       0x12 HAL/Servo_Driver/Servo_Program.o
-                0x00000978                Servo_voidInit
+                0x000009be       0x12 HAL/Servo_Driver/Servo_Program.o
+                0x000009be                Servo_voidInit
  .text.Servo_voidDegree
-                0x0000098a       0x4a HAL/Servo_Driver/Servo_Program.o
-                0x0000098a                Servo_voidDegree
+                0x000009d0       0x4a HAL/Servo_Driver/Servo_Program.o
+                0x000009d0                Servo_voidDegree
  .text.ADC_voidInit
-                0x000009d4       0x10 MCAL/ADC_Driver/ADC_prog.o
-                0x000009d4                ADC_voidInit
+                0x00000a1a       0x10 MCAL/ADC_Driver/ADC_prog.o
+                0x00000a1a                ADC_voidInit
  .text.ADC_u8StartConversion
-                0x000009e4       0x18 MCAL/ADC_Driver/ADC_prog.o
-                0x000009e4                ADC_u8StartConversion
+                0x00000a2a       0x18 MCAL/ADC_Driver/ADC_prog.o
+                0x00000a2a                ADC_u8StartConversion
  .text.DIO_voidSetPinDirection
-                0x000009fc       0x5c MCAL/DIO_Driver/DIO_prog.o
-                0x000009fc                DIO_voidSetPinDirection
+                0x00000a42       0x5c MCAL/DIO_Driver/DIO_prog.o
+                0x00000a42                DIO_voidSetPinDirection
  .text.DIO_voidSetPinValue
-                0x00000a58       0x5c MCAL/DIO_Driver/DIO_prog.o
-                0x00000a58                DIO_voidSetPinValue
+                0x00000a9e       0x5c MCAL/DIO_Driver/DIO_prog.o
+                0x00000a9e                DIO_voidSetPinValue
  .text.DIO_voidSetPortDirection
-                0x00000ab4       0x20 MCAL/DIO_Driver/DIO_prog.o
-                0x00000ab4                DIO_voidSetPortDirection
+                0x00000afa       0x20 MCAL/DIO_Driver/DIO_prog.o
+                0x00000afa                DIO_voidSetPortDirection
  .text.DIO_voidSetPortValue
-                0x00000ad4       0x20 MCAL/DIO_Driver/DIO_prog.o
-                0x00000ad4                DIO_voidSetPortValue
+                0x00000b1a       0x20 MCAL/DIO_Driver/DIO_prog.o
+                0x00000b1a                DIO_voidSetPortValue
  .text.DIO_u8GetPinValue
-                0x00000af4       0x62 MCAL/DIO_Driver/DIO_prog.o
-                0x00000af4                DIO_u8GetPinValue
+                0x00000b3a       0x62 MCAL/DIO_Driver/DIO_prog.o
+                0x00000b3a                DIO_u8GetPinValue
  .text.__vector_1
-                0x00000b56       0x52 MCAL/EXTI_Driver/EXTI_prog.o
-                0x00000b56                __vector_1
+                0x00000b9c       0x52 MCAL/EXTI_Driver/EXTI_prog.o
+                0x00000b9c                __vector_1
  .text.__vector_2
-                0x00000ba8       0x52 MCAL/EXTI_Driver/EXTI_prog.o
-                0x00000ba8                __vector_2
+                0x00000bee       0x52 MCAL/EXTI_Driver/EXTI_prog.o
+                0x00000bee                __vector_2
  .text.__vector_3
-                0x00000bfa       0x52 MCAL/EXTI_Driver/EXTI_prog.o
-                0x00000bfa                __vector_3
+                0x00000c40       0x52 MCAL/EXTI_Driver/EXTI_prog.o
+                0x00000c40                __vector_3
  .text.GIE_voidEnableGlobalInt
-                0x00000c4c        0x8 MCAL/GIE_Driver/GIE_prog.o
-                0x00000c4c                GIE_voidEnableGlobalInt
+                0x00000c92        0x8 MCAL/GIE_Driver/GIE_prog.o
+                0x00000c92                GIE_voidEnableGlobalInt
  .text.TIMER_delay_ms
-                0x00000c54       0x3c MCAL/TIMER_Driver/TIMER_Prog.o
-                0x00000c54                TIMER_delay_ms
+                0x00000c9a       0x3c MCAL/TIMER_Driver/TIMER_Prog.o
+                0x00000c9a                TIMER_delay_ms
  .text.TIMER_voidTimer1Init
-                0x00000c90       0xdc MCAL/TIMER_Driver/TIMER_Prog.o
-                0x00000c90                TIMER_voidTimer1Init
+                0x00000cd6       0xdc MCAL/TIMER_Driver/TIMER_Prog.o
+                0x00000cd6                TIMER_voidTimer1Init
  .text.TIMER_voidSetOverFlow
-                0x00000d6c        0x6 MCAL/TIMER_Driver/TIMER_Prog.o
-                0x00000d6c                TIMER_voidSetOverFlow
+                0x00000db2        0x6 MCAL/TIMER_Driver/TIMER_Prog.o
+                0x00000db2                TIMER_voidSetOverFlow
  .text.TIMER_voidTimer1ChannelASetCompareValue
-                0x00000d72        0x6 MCAL/TIMER_Driver/TIMER_Prog.o
-                0x00000d72                TIMER_voidTimer1ChannelASetCompareValue
+                0x00000db8        0x6 MCAL/TIMER_Driver/TIMER_Prog.o
+                0x00000db8                TIMER_voidTimer1ChannelASetCompareValue
  .text.TIMER_voidTimer1SetPreloadValue
-                0x00000d78        0x6 MCAL/TIMER_Driver/TIMER_Prog.o
-                0x00000d78                TIMER_voidTimer1SetPreloadValue
+                0x00000dbe        0x6 MCAL/TIMER_Driver/TIMER_Prog.o
+                0x00000dbe                TIMER_voidTimer1SetPreloadValue
  .text.__vector_11
-                0x00000d7e       0x52 MCAL/TIMER_Driver/TIMER_Prog.o
-                0x00000d7e                __vector_11
+                0x00000dc4       0x52 MCAL/TIMER_Driver/TIMER_Prog.o
+                0x00000dc4                __vector_11
  .text.__vector_10
-                0x00000dd0       0x52 MCAL/TIMER_Driver/TIMER_Prog.o
-                0x00000dd0                __vector_10
+                0x00000e16       0x52 MCAL/TIMER_Driver/TIMER_Prog.o
+                0x00000e16                __vector_10
  .text.__vector_6
-                0x00000e22       0x52 MCAL/TIMER_Driver/TIMER_Prog.o
-                0x00000e22                __vector_6
+                0x00000e68       0x52 MCAL/TIMER_Driver/TIMER_Prog.o
+                0x00000e68                __vector_6
  .text.__vector_7
-                0x00000e74       0x52 MCAL/TIMER_Driver/TIMER_Prog.o
-                0x00000e74                __vector_7
+                0x00000eba       0x52 MCAL/TIMER_Driver/TIMER_Prog.o
+                0x00000eba                __vector_7
  .text.TWI_voidMasterInit
-                0x00000ec6       0x18 MCAL/TWI_Driver/TWI_prog.o
-                0x00000ec6                TWI_voidMasterInit
+                0x00000f0c       0x18 MCAL/TWI_Driver/TWI_prog.o
+                0x00000f0c                TWI_voidMasterInit
  .text.TWI_SendStartCondition
-                0x00000ede       0x20 MCAL/TWI_Driver/TWI_prog.o
-                0x00000ede                TWI_SendStartCondition
+                0x00000f24       0x20 MCAL/TWI_Driver/TWI_prog.o
+                0x00000f24                TWI_SendStartCondition
  .text.TWI_SendRepeatedStart
-                0x00000efe       0x22 MCAL/TWI_Driver/TWI_prog.o
-                0x00000efe                TWI_SendRepeatedStart
+                0x00000f44       0x22 MCAL/TWI_Driver/TWI_prog.o
+                0x00000f44                TWI_SendRepeatedStart
  .text.TWI_SendSlaveAddressWithWrite
-                0x00000f20       0x20 MCAL/TWI_Driver/TWI_prog.o
-                0x00000f20                TWI_SendSlaveAddressWithWrite
+                0x00000f66       0x20 MCAL/TWI_Driver/TWI_prog.o
+                0x00000f66                TWI_SendSlaveAddressWithWrite
  .text.TWI_SendSlaveAddressWithRead
-                0x00000f40       0x20 MCAL/TWI_Driver/TWI_prog.o
-                0x00000f40                TWI_SendSlaveAddressWithRead
+                0x00000f86       0x20 MCAL/TWI_Driver/TWI_prog.o
+                0x00000f86                TWI_SendSlaveAddressWithRead
  .text.TWI_MasterWriteDataByte
-                0x00000f60       0x14 MCAL/TWI_Driver/TWI_prog.o
-                0x00000f60                TWI_MasterWriteDataByte
+                0x00000fa6       0x14 MCAL/TWI_Driver/TWI_prog.o
+                0x00000fa6                TWI_MasterWriteDataByte
  .text.TWI_MasterReadDataByte
-                0x00000f74       0x28 MCAL/TWI_Driver/TWI_prog.o
-                0x00000f74                TWI_MasterReadDataByte
+                0x00000fba       0x28 MCAL/TWI_Driver/TWI_prog.o
+                0x00000fba                TWI_MasterReadDataByte
  .text.TWI_SendStopCondition
-                0x00000f9c        0xe MCAL/TWI_Driver/TWI_prog.o
-                0x00000f9c                TWI_SendStopCondition
+                0x00000fe2        0xe MCAL/TWI_Driver/TWI_prog.o
+                0x00000fe2                TWI_SendStopCondition
  .text.USART_voidInit
-                0x00000faa       0x10 MCAL/USART_Driver/USART_prog.o
-                0x00000faa                USART_voidInit
+                0x00000ff0       0x10 MCAL/USART_Driver/USART_prog.o
+                0x00000ff0                USART_voidInit
  .text.USART_voidTransmitData
-                0x00000fba        0xa MCAL/USART_Driver/USART_prog.o
-                0x00000fba                USART_voidTransmitData
+                0x00001000        0xa MCAL/USART_Driver/USART_prog.o
+                0x00001000                USART_voidTransmitData
  .text.USART_u8ReceiverData
-                0x00000fc4        0x8 MCAL/USART_Driver/USART_prog.o
-                0x00000fc4                USART_u8ReceiverData
+                0x0000100a        0x8 MCAL/USART_Driver/USART_prog.o
+                0x0000100a                USART_u8ReceiverData
  .text.USART_u8TimeOUTReceiverData
-                0x00000fcc       0x58 MCAL/USART_Driver/USART_prog.o
-                0x00000fcc                USART_u8TimeOUTReceiverData
+                0x00001012       0x58 MCAL/USART_Driver/USART_prog.o
+                0x00001012                USART_u8TimeOUTReceiverData
  .text.USART_voidTransmitString
-                0x00001024       0x2c MCAL/USART_Driver/USART_prog.o
-                0x00001024                USART_voidTransmitString
+                0x0000106a       0x2c MCAL/USART_Driver/USART_prog.o
+                0x0000106a                USART_voidTransmitString
  .text.USART_voidCallBackFunction
-                0x00001050        0xa MCAL/USART_Driver/USART_prog.o
-                0x00001050                USART_voidCallBackFunction
+                0x00001096        0xa MCAL/USART_Driver/USART_prog.o
+                0x00001096                USART_voidCallBackFunction
  .text.USART_voidEnableRxINT
-                0x0000105a        0x4 MCAL/USART_Driver/USART_prog.o
-                0x0000105a                USART_voidEnableRxINT
+                0x000010a0        0x4 MCAL/USART_Driver/USART_prog.o
+                0x000010a0                USART_voidEnableRxINT
  .text.__vector_13
-                0x0000105e       0x52 MCAL/USART_Driver/USART_prog.o
-                0x0000105e                __vector_13
+                0x000010a4       0x52 MCAL/USART_Driver/USART_prog.o
+                0x000010a4                __vector_13
  .text.avr-libc.fplib
-                0x000010b0        0xe d:/colleage/colleage programs/atmel/setup/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(addsf3.o)
-                0x000010b0                __subsf3
-                0x000010b2                __addsf3
+                0x000010f6        0xe d:/colleage/colleage programs/atmel/setup/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(addsf3.o)
+                0x000010f6                __subsf3
+                0x000010f8                __addsf3
  .text.avr-libc.fplib
-                0x000010be       0xcc d:/colleage/colleage programs/atmel/setup/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(addsf3x.o)
-                0x000010e0                __addsf3x
+                0x00001104       0xcc d:/colleage/colleage programs/atmel/setup/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(addsf3x.o)
+                0x00001126                __addsf3x
  .text.avr-libc.fplib
-                0x0000118a        0x8 d:/colleage/colleage programs/atmel/setup/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(divsf3.o)
-                0x0000118a                __divsf3
+                0x000011d0        0x8 d:/colleage/colleage programs/atmel/setup/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(divsf3.o)
+                0x000011d0                __divsf3
  .text.avr-libc.fplib
-                0x00001192       0xdc d:/colleage/colleage programs/atmel/setup/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(divsf3x.o)
-                0x000011b2                __divsf3x
-                0x000011b8                __divsf3_pse
+                0x000011d8       0xdc d:/colleage/colleage programs/atmel/setup/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(divsf3x.o)
+                0x000011f8                __divsf3x
+                0x000011fe                __divsf3_pse
  .text.avr-libc.fplib
-                0x0000126e       0x5e d:/colleage/colleage programs/atmel/setup/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fixunssfsi.o)
-                0x0000126e                __fixunssfsi
+                0x000012b4       0x5e d:/colleage/colleage programs/atmel/setup/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fixunssfsi.o)
+                0x000012b4                __fixunssfsi
  .text.avr-libc.fplib
-                0x000012cc       0x7a d:/colleage/colleage programs/atmel/setup/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(floatsisf.o)
-                0x000012cc                __floatunsisf
-                0x000012d0                __floatsisf
+                0x00001312       0x7a d:/colleage/colleage programs/atmel/setup/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(floatsisf.o)
+                0x00001312                __floatunsisf
+                0x00001316                __floatsisf
  .text.avr-libc.fplib
-                0x00001346        0xc d:/colleage/colleage programs/atmel/setup/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_inf.o)
-                0x00001346                __fp_inf
+                0x0000138c        0xc d:/colleage/colleage programs/atmel/setup/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_inf.o)
+                0x0000138c                __fp_inf
  .text.avr-libc.fplib
-                0x00001352        0x6 d:/colleage/colleage programs/atmel/setup/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_nan.o)
-                0x00001352                __fp_nan
+                0x00001398        0x6 d:/colleage/colleage programs/atmel/setup/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_nan.o)
+                0x00001398                __fp_nan
  .text.avr-libc.fplib
-                0x00001358        0xe d:/colleage/colleage programs/atmel/setup/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_pscA.o)
-                0x00001358                __fp_pscA
+                0x0000139e        0xe d:/colleage/colleage programs/atmel/setup/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_pscA.o)
+                0x0000139e                __fp_pscA
  .text.avr-libc.fplib
-                0x00001366        0xe d:/colleage/colleage programs/atmel/setup/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_pscB.o)
-                0x00001366                __fp_pscB
+                0x000013ac        0xe d:/colleage/colleage programs/atmel/setup/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_pscB.o)
+                0x000013ac                __fp_pscB
  .text.avr-libc.fplib
-                0x00001374       0x22 d:/colleage/colleage programs/atmel/setup/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_round.o)
-                0x00001374                __fp_round
+                0x000013ba       0x22 d:/colleage/colleage programs/atmel/setup/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_round.o)
+                0x000013ba                __fp_round
  .text.avr-libc.fplib
-                0x00001396       0x44 d:/colleage/colleage programs/atmel/setup/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_split3.o)
-                0x00001396                __fp_split3
-                0x000013a6                __fp_splitA
+                0x000013dc       0x44 d:/colleage/colleage programs/atmel/setup/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_split3.o)
+                0x000013dc                __fp_split3
+                0x000013ec                __fp_splitA
  .text.avr-libc.fplib
-                0x000013da        0xe d:/colleage/colleage programs/atmel/setup/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_zero.o)
-                0x000013da                __fp_zero
-                0x000013dc                __fp_szero
+                0x00001420        0xe d:/colleage/colleage programs/atmel/setup/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_zero.o)
+                0x00001420                __fp_zero
+                0x00001422                __fp_szero
  .text.avr-libc.fplib
-                0x000013e8        0x8 d:/colleage/colleage programs/atmel/setup/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(mulsf3.o)
-                0x000013e8                __mulsf3
+                0x0000142e        0x8 d:/colleage/colleage programs/atmel/setup/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(mulsf3.o)
+                0x0000142e                __mulsf3
  .text.avr-libc.fplib
-                0x000013f0       0xd2 d:/colleage/colleage programs/atmel/setup/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(mulsf3x.o)
-                0x0000140e                __mulsf3x
-                0x00001414                __mulsf3_pse
+                0x00001436       0xd2 d:/colleage/colleage programs/atmel/setup/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(mulsf3x.o)
+                0x00001454                __mulsf3x
+                0x0000145a                __mulsf3_pse
  .text.avr-libc
-                0x000014c2       0x16 d:/colleage/colleage programs/atmel/setup/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(itoa_ncheck.o)
-                0x000014c2                __itoa_ncheck
+                0x00001508       0x16 d:/colleage/colleage programs/atmel/setup/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(itoa_ncheck.o)
+                0x00001508                __itoa_ncheck
  .text.avr-libc
-                0x000014d8       0x34 d:/colleage/colleage programs/atmel/setup/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(utoa_ncheck.o)
-                0x000014d8                __utoa_ncheck
-                0x000014da                __utoa_common
+                0x0000151e       0x34 d:/colleage/colleage programs/atmel/setup/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(utoa_ncheck.o)
+                0x0000151e                __utoa_ncheck
+                0x00001520                __utoa_common
  .text.avr-libc
-                0x0000150c       0x20 d:/colleage/colleage programs/atmel/setup/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(strrev.o)
-                0x0000150c                strrev
-                0x0000152c                . = ALIGN (0x2)
+                0x00001552       0x20 d:/colleage/colleage programs/atmel/setup/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(strrev.o)
+                0x00001552                strrev
+                0x00001572                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x0000152c        0x0 d:/colleage/colleage programs/atmel/setup/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
-                0x0000152c                _exit
-                0x0000152c                exit
+ .fini9         0x00001572        0x0 d:/colleage/colleage programs/atmel/setup/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+                0x00001572                _exit
+                0x00001572                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -748,11 +748,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x0000152c        0x4 d:/colleage/colleage programs/atmel/setup/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+ .fini0         0x00001572        0x4 d:/colleage/colleage programs/atmel/setup/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x00001530                _etext = .
+                0x00001576                _etext = .
 
-.data           0x00800060      0x12e load address 0x00001530
+.data           0x00800060      0x132 load address 0x00001576
                 0x00800060                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
@@ -764,63 +764,63 @@ END GROUP
  .rodata        0x00800062        0xc HAL/KEYPAD_Driver/KPD_prog.o
  *(.rodata*)
  .rodata.str1.1
-                0x0080006e      0x11f APP/main.o
+                0x0080006e      0x123 APP/main.o
  *(.gnu.linkonce.r*)
-                0x0080018e                . = ALIGN (0x2)
- *fill*         0x0080018d        0x1 
-                0x0080018e                _edata = .
-                0x0080018e                PROVIDE (__data_end, .)
+                0x00800192                . = ALIGN (0x2)
+ *fill*         0x00800191        0x1 
+                0x00800192                _edata = .
+                0x00800192                PROVIDE (__data_end, .)
 
-.bss            0x0080018e       0x1a
-                0x0080018e                PROVIDE (__bss_start, .)
+.bss            0x00800192       0x1a
+                0x00800192                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
  .bss.Local_u8DoorStatus.1765
-                0x0080018e        0x1 APP/main.o
+                0x00800192        0x1 APP/main.o
  .bss.Local_u8DigitsCount.1767
-                0x0080018f        0x1 APP/main.o
+                0x00800193        0x1 APP/main.o
  .bss.Local_u16DoorPassword.1766
-                0x00800190        0x2 APP/main.o
- .bss.Ticks     0x00800192        0x2 HAL/Servo_Driver/Servo_Program.o
-                0x00800192                Ticks
+                0x00800194        0x2 APP/main.o
+ .bss.Ticks     0x00800196        0x2 HAL/Servo_Driver/Servo_Program.o
+                0x00800196                Ticks
  .bss.Global_pvINT2NotifyFunc
-                0x00800194        0x2 MCAL/EXTI_Driver/EXTI_prog.o
-                0x00800194                Global_pvINT2NotifyFunc
- .bss.Global_pvINT1NotifyFunc
-                0x00800196        0x2 MCAL/EXTI_Driver/EXTI_prog.o
-                0x00800196                Global_pvINT1NotifyFunc
- .bss.Global_pvINT0NotifyFunc
                 0x00800198        0x2 MCAL/EXTI_Driver/EXTI_prog.o
-                0x00800198                Global_pvINT0NotifyFunc
+                0x00800198                Global_pvINT2NotifyFunc
+ .bss.Global_pvINT1NotifyFunc
+                0x0080019a        0x2 MCAL/EXTI_Driver/EXTI_prog.o
+                0x0080019a                Global_pvINT1NotifyFunc
+ .bss.Global_pvINT0NotifyFunc
+                0x0080019c        0x2 MCAL/EXTI_Driver/EXTI_prog.o
+                0x0080019c                Global_pvINT0NotifyFunc
  .bss.GLOBAL_TIMER1_COMPARE_MATCH_PTR
-                0x0080019a        0x2 MCAL/TIMER_Driver/TIMER_Prog.o
-                0x0080019a                GLOBAL_TIMER1_COMPARE_MATCH_PTR
- .bss.GLOBAL_ICU_ISR
-                0x0080019c        0x2 MCAL/TIMER_Driver/TIMER_Prog.o
-                0x0080019c                GLOBAL_ICU_ISR
- .bss.TIMER0_CTC_ISR_PTR
                 0x0080019e        0x2 MCAL/TIMER_Driver/TIMER_Prog.o
-                0x0080019e                TIMER0_CTC_ISR_PTR
- .bss.TIMER0_Normal_ISR_PTR
+                0x0080019e                GLOBAL_TIMER1_COMPARE_MATCH_PTR
+ .bss.GLOBAL_ICU_ISR
                 0x008001a0        0x2 MCAL/TIMER_Driver/TIMER_Prog.o
-                0x008001a0                TIMER0_Normal_ISR_PTR
+                0x008001a0                GLOBAL_ICU_ISR
+ .bss.TIMER0_CTC_ISR_PTR
+                0x008001a2        0x2 MCAL/TIMER_Driver/TIMER_Prog.o
+                0x008001a2                TIMER0_CTC_ISR_PTR
+ .bss.TIMER0_Normal_ISR_PTR
+                0x008001a4        0x2 MCAL/TIMER_Driver/TIMER_Prog.o
+                0x008001a4                TIMER0_Normal_ISR_PTR
  .bss.GLOBAL_PTR_CallBack
-                0x008001a2        0x2 MCAL/USART_Driver/USART_prog.o
-                0x008001a2                GLOBAL_PTR_CallBack
+                0x008001a6        0x2 MCAL/USART_Driver/USART_prog.o
+                0x008001a6                GLOBAL_PTR_CallBack
  *(COMMON)
- COMMON         0x008001a4        0x4 APP/main.o
-                0x008001a4                Global_u8SavedDoorPassHighByte
-                0x008001a5                Global_u16EPROMDoorPass
-                0x008001a7                Global_u8SavedDoorPassLowByte
-                0x008001a8                PROVIDE (__bss_end, .)
-                0x00001530                __data_load_start = LOADADDR (.data)
-                0x0000165e                __data_load_end = (__data_load_start + SIZEOF (.data))
+ COMMON         0x008001a8        0x4 APP/main.o
+                0x008001a8                Global_u8SavedDoorPassHighByte
+                0x008001a9                Global_u16EPROMDoorPass
+                0x008001ab                Global_u8SavedDoorPassLowByte
+                0x008001ac                PROVIDE (__bss_end, .)
+                0x00001576                __data_load_start = LOADADDR (.data)
+                0x000016a8                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x008001a8        0x0
+.noinit         0x008001ac        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
  *(.noinit*)
                 [!provide]                PROVIDE (__noinit_end, .)
-                0x008001a8                _end = .
+                0x008001ac                _end = .
                 [!provide]                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
@@ -926,21 +926,21 @@ END GROUP
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x2f8e
+.debug_info     0x00000000     0x3006
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x4e6 D:/Colleage/colleage programs/Atmel/setup/7.0/Packs/atmel/ATmega_DFP/1.2.209/gcc/dev/atmega32/avr5/crtatmega32.o
- .debug_info    0x000004e6      0xbef APP/main.o
- .debug_info    0x000010d5      0x230 HAL/EPROM_Driver/EPROM_prog.o
- .debug_info    0x00001305      0x3a2 HAL/KEYPAD_Driver/KPD_prog.o
- .debug_info    0x000016a7      0x7f2 HAL/LCD_Driver/LCD_prog.o
- .debug_info    0x00001e99      0x192 HAL/Servo_Driver/Servo_Program.o
- .debug_info    0x0000202b       0xda MCAL/ADC_Driver/ADC_prog.o
- .debug_info    0x00002105      0x238 MCAL/DIO_Driver/DIO_prog.o
- .debug_info    0x0000233d      0x207 MCAL/EXTI_Driver/EXTI_prog.o
- .debug_info    0x00002544       0x99 MCAL/GIE_Driver/GIE_prog.o
- .debug_info    0x000025dd      0x4d1 MCAL/TIMER_Driver/TIMER_Prog.o
- .debug_info    0x00002aae      0x29c MCAL/TWI_Driver/TWI_prog.o
- .debug_info    0x00002d4a      0x244 MCAL/USART_Driver/USART_prog.o
+ .debug_info    0x000004e6      0xc67 APP/main.o
+ .debug_info    0x0000114d      0x230 HAL/EPROM_Driver/EPROM_prog.o
+ .debug_info    0x0000137d      0x3a2 HAL/KEYPAD_Driver/KPD_prog.o
+ .debug_info    0x0000171f      0x7f2 HAL/LCD_Driver/LCD_prog.o
+ .debug_info    0x00001f11      0x192 HAL/Servo_Driver/Servo_Program.o
+ .debug_info    0x000020a3       0xda MCAL/ADC_Driver/ADC_prog.o
+ .debug_info    0x0000217d      0x238 MCAL/DIO_Driver/DIO_prog.o
+ .debug_info    0x000023b5      0x207 MCAL/EXTI_Driver/EXTI_prog.o
+ .debug_info    0x000025bc       0x99 MCAL/GIE_Driver/GIE_prog.o
+ .debug_info    0x00002655      0x4d1 MCAL/TIMER_Driver/TIMER_Prog.o
+ .debug_info    0x00002b26      0x29c MCAL/TWI_Driver/TWI_prog.o
+ .debug_info    0x00002dc2      0x244 MCAL/USART_Driver/USART_prog.o
 
 .debug_abbrev   0x00000000     0x10df
  *(.debug_abbrev)
@@ -958,21 +958,21 @@ END GROUP
  .debug_abbrev  0x00000eb7       0xd3 MCAL/TWI_Driver/TWI_prog.o
  .debug_abbrev  0x00000f8a      0x155 MCAL/USART_Driver/USART_prog.o
 
-.debug_line     0x00000000     0x1f9a
+.debug_line     0x00000000     0x1fbe
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000      0x115 D:/Colleage/colleage programs/Atmel/setup/7.0/Packs/atmel/ATmega_DFP/1.2.209/gcc/dev/atmega32/avr5/crtatmega32.o
- .debug_line    0x00000115      0x696 APP/main.o
- .debug_line    0x000007ab      0x138 HAL/EPROM_Driver/EPROM_prog.o
- .debug_line    0x000008e3      0x183 HAL/KEYPAD_Driver/KPD_prog.o
- .debug_line    0x00000a66      0x36a HAL/LCD_Driver/LCD_prog.o
- .debug_line    0x00000dd0      0x113 HAL/Servo_Driver/Servo_Program.o
- .debug_line    0x00000ee3      0x147 MCAL/ADC_Driver/ADC_prog.o
- .debug_line    0x0000102a      0x283 MCAL/DIO_Driver/DIO_prog.o
- .debug_line    0x000012ad      0x22c MCAL/EXTI_Driver/EXTI_prog.o
- .debug_line    0x000014d9       0xcf MCAL/GIE_Driver/GIE_prog.o
- .debug_line    0x000015a8      0x4b4 MCAL/TIMER_Driver/TIMER_Prog.o
- .debug_line    0x00001a5c      0x2c7 MCAL/TWI_Driver/TWI_prog.o
- .debug_line    0x00001d23      0x277 MCAL/USART_Driver/USART_prog.o
+ .debug_line    0x00000115      0x6ba APP/main.o
+ .debug_line    0x000007cf      0x138 HAL/EPROM_Driver/EPROM_prog.o
+ .debug_line    0x00000907      0x183 HAL/KEYPAD_Driver/KPD_prog.o
+ .debug_line    0x00000a8a      0x36a HAL/LCD_Driver/LCD_prog.o
+ .debug_line    0x00000df4      0x113 HAL/Servo_Driver/Servo_Program.o
+ .debug_line    0x00000f07      0x147 MCAL/ADC_Driver/ADC_prog.o
+ .debug_line    0x0000104e      0x283 MCAL/DIO_Driver/DIO_prog.o
+ .debug_line    0x000012d1      0x22c MCAL/EXTI_Driver/EXTI_prog.o
+ .debug_line    0x000014fd       0xcf MCAL/GIE_Driver/GIE_prog.o
+ .debug_line    0x000015cc      0x4b4 MCAL/TIMER_Driver/TIMER_Prog.o
+ .debug_line    0x00001a80      0x2c7 MCAL/TWI_Driver/TWI_prog.o
+ .debug_line    0x00001d47      0x277 MCAL/USART_Driver/USART_prog.o
 
 .debug_frame    0x00000000      0x964
  *(.debug_frame)
