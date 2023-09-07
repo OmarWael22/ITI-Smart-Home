@@ -17,6 +17,7 @@
 #include "../HAL/EPROM_Driver/EPROM_interface.h"
 #include "../HAL/Servo_Driver/Servo_Interface.h"
 #include "../LIB/BIT_MATH.h"
+#include "avr/delay.h"
 
 #define		Max_Pass_Digits			4
 #define		SystemHasRunBefore		28
@@ -89,6 +90,8 @@ void main(void)
 	void_GetEPROMLockerPass();
 	
 	//LCD_voidSendNumber(Global_u16EPROMDoorPass);
+	//WDT
+	WDT_voidInit();
 	
 	// Initialize USART
 	USART_voidInit();
@@ -104,10 +107,11 @@ void main(void)
 	DIO_voidSetPinDirection(DIO_PORTC,LIGHT3,DIO_OUTPUT);
 
 	while(1){
+		WDT_voidReset();
 		/*USART is Controlled by ISR TIMER1_COMPB*/
-		GIE_voidEnableGlobalInt();
 		USART_voidEnableRxINT();
 		//Call locker Control Function
+		WDT_voidReset();
 		void_Locker();
 		//Call Temperature Sensor Control Function
 		TempSensor();
@@ -129,7 +133,9 @@ void TempSensor(void){
 	Temp = (u8)((Temp*5)/ (.01*256));
 	//Check on Temp if over 35C ===> AC will work and turn off Fan if was on
 	if(Temp>=35){
+		//ac
 		DIO_voidSetPinValue(DIO_PORTD,DIO_PIN6,DIO_HIGH);
+		//fan
 		DIO_voidSetPinValue(DIO_PORTD,DIO_PIN7,DIO_LOW);
 	}
 	//Check on Temp if over 25C ===> Fan will work and turn off AC if was on
@@ -155,6 +161,8 @@ void void_Locker(){
 	static u16 Local_u16DoorPassword=0;
 	// counter to the number of digits entered
 	static u8 Local_u8DigitsCount=0;
+	// counter to number of wrong password
+	//static u8 Local_u8WrongPassCount=0;
 
 	/* we have three cases in this function
 		* First : clear is pressed
@@ -205,6 +213,7 @@ void void_Locker(){
 						// if it is the first digit that user enter --> clear any previous message on the screen
 						if(Local_u8DigitsCount==0)
 							LCD_voidClearDisplay();
+						/* dispaly the pressed key for 1.2 Sec then hide it and dispaly *  */
 						LCD_voidSendNumber(Local_u8Keypad_Key);
 						TIMER_delay_ms(1200);
 						LCD_voidGoTOXY(0,Local_u8DigitsCount);
@@ -256,12 +265,26 @@ void void_Locker(){
 			}
 
 		}
-		else
-			LCD_voidSendString("Wrong password !");
-
+		else{
+			LCD_voidSendString("Wrong pass! ");
+			/*Local_u8WrongPassCount++;
+			LCD_voidSendNumber(Local_u8WrongPassCount);
+			LCD_voidSendString("/3");
+			if(Local_u8WrongPassCount==3)
+				{	
+					for(u8 i=30 ; i!=255 ; i-- )
+					{
+						LCD_voidGoTOXY(0,0);
+						LCD_voidSendString("Try Again in ");
+						LCD_voidSendNumber(i);
+						_delay_ms(100);
+					}
+				}
+			}*/
 			// reset the entered password after typing enter
 			Local_u16DoorPassword=0;
 			Local_u8DigitsCount=0;
+		}
 	}
 
 	/****************************************************************************************************************************************************************/
@@ -270,8 +293,9 @@ void void_Locker(){
 		// if it is the first digit that user enter --> clear any previous message on the screen
 		if(Local_u8DigitsCount==0)
 			LCD_voidClearDisplay();
+		/* dispaly the pressed key for 1.2 Sec then hide it and dispaly *  */
 		LCD_voidSendNumber(Local_u8Keypad_Key);
-		TIMER_delay_ms(1200);
+		_delay_ms(250);
 		LCD_voidGoTOXY(0,Local_u8DigitsCount);
 		LCD_voidSendData('*');
 
@@ -309,7 +333,7 @@ void void_GetEPROMLockerPass(void){
 }
 
 void USART_Start(void){
-	//Save First Receieved Input AS It MUST be '*' If not return from function
+	//Save First Received Input AS It MUST be '*' If not return from function
 	u8 FirstReceived = USART_u8ReceiverData();
 	if(FirstReceived!='*')
 		return;
@@ -331,11 +355,12 @@ void USART_Start(void){
 
 	//Containing max enter value
 	u8 Max_Num = INPUT_DECIDED_LENGTH-1;
-
+	//initialize error state
+	TimeOut TimeOut_Err;
 	// Loop until reaching Max val of Input, if stucked Timer will INT and Time out
 	while (Max_Num) {
 		 //Receive data element by element
-		 TimeOut TimeOut_Err=100;
+		 TimeOut TimeOut_Err;
 		 TimeOut_Err = USART_u8TimeOUTReceiverData(&DataReceived[DataIdx]);
 		//DataReceived[DataIdx] = USART_u8ReceiverData();
 		if(TimeOut_Err == TimeOUT_Occured){
@@ -362,8 +387,7 @@ void USART_Start(void){
 		DataIdx++;
 		//Decrement Max_Num only to loop Max_Num Inside While LOOP
 		Max_Num --;
-		//Set Timer Counter to 0 with Each Entered Input
-		TIMER_voidTimer1SetPreloadValue(0);
+	
 			}
 
 	//Display Enter in the terminal
@@ -396,10 +420,20 @@ void USART_Start(void){
 	else{//Check is Completed and there's no Error
 		USART_voidTransmitString("ROOM ");
 		USART_voidTransmitData(DataReceived[2]);
-		if(Con_St==ROOM_LIGHT_ON)
+		if(Con_St==ROOM_LIGHT_ON){
 			USART_voidTransmitString(" Light Is ON\r");
-		else
+			LCD_voidSendString("ROOM ");
+			// display the room number
+			LCD_voidSendData(DataReceived[2]);
+			LCD_voidSendString(" is ON");
+			}
+		else{
 			USART_voidTransmitString(" Light Is OFF\r");
+			LCD_voidSendString("ROOM ");
+			// display the room number
+			LCD_voidSendData(DataReceived[2]);
+			LCD_voidSendString(" is OFF");
+		}
 	}
 	//ReCall Servo Initialization as both USART and Servo uses Timer1 with different modes
 	Servo_voidInit();
@@ -412,19 +446,13 @@ ConditionsState USART_voidProcessCommand(u8 command,u8 Local_LightNum) {
 	if (command=='1') {
 		// Turning ON ROOM 1 LIGHT
 		DIO_voidSetPinValue(DIO_PORTC,Local_LightNum,DIO_HIGH);
-		LCD_voidSendString("ROOM ");
-		// display the room number
-		LCD_voidSendNumber(Local_LightNum-4);
-		LCD_voidSendString(" is ON");
+		
 		Con_St = ROOM_LIGHT_ON;
 	}
 	else if ( command=='0') {
 		// Turning OFF ROOM 1 LIGHT
 		DIO_voidSetPinValue(DIO_PORTC,Local_LightNum,DIO_LOW);
-		LCD_voidSendString("ROOM ");
-		// display the room number
-		LCD_voidSendNumber(Local_LightNum-4);
-		LCD_voidSendString(" is OFF");
+		
 		Con_St = ROOM_LIGHT_OFF;
 	}
 	else{ // IF input is not 0 nor 1 ==> INCORRECT INP

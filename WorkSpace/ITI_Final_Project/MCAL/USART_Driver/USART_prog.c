@@ -9,7 +9,7 @@
 #include"USART_interface.h"
 #include "../../LIB/BIT_MATH.h"
 #include"../../LIB/STD_TYPES.h"
-
+#include "../WDT_Driver/WDT_interface.h"
 void (*GLOBAL_PTR_CallBack)(void) = NULL_PTR;
 
 void USART_voidInit(void){
@@ -79,10 +79,13 @@ TimeOut USART_u8TimeOUTReceiverData(u8* Copy_u8PTRReceivingData){
 		SET_BIT(TCCR1B,0);
 		CLR_BIT(TCCR1B,1);
 		SET_BIT(TCCR1B,2);
+		
 	while(GET_BIT(UCSRA,7)==0){
+		WDT_voidReset();
 		if(TCNT1>=TIMEOUTVALUE){
 			SET_BIT(UCSRA,7);
 			TCCR1B &= 0xF8;
+			
 			return TimeOUT_Occured;
 		}
 	}

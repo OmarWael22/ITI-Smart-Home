@@ -13,7 +13,14 @@ APP/main.d APP/main.o: ../APP/main.c \
  ../APP/../MCAL/TWI_Driver/../../LIB/STD_TYPES.h \
  ../APP/../HAL/EPROM_Driver/EPROM_interface.h \
  ../APP/../HAL/EPROM_Driver/../../LIB/STD_TYPES.h \
- ../APP/../HAL/Servo_Driver/Servo_Interface.h ../APP/../LIB/BIT_MATH.h
+ ../APP/../HAL/Servo_Driver/Servo_Interface.h ../APP/../LIB/BIT_MATH.h \
+ d:\colleage\colleage\ programs\atmel\setup\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\delay.h \
+ d:\colleage\colleage\ programs\atmel\setup\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\delay.h \
+ d:\colleage\colleage\ programs\atmel\setup\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\inttypes.h \
+ d:\colleage\colleage\ programs\atmel\setup\7.0\toolchain\avr8\avr8-gnu-toolchain\lib\gcc\avr\5.4.0\include\stdint.h \
+ d:\colleage\colleage\ programs\atmel\setup\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\stdint.h \
+ d:\colleage\colleage\ programs\atmel\setup\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\delay_basic.h \
+ d:\colleage\colleage\ programs\atmel\setup\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\math.h
 
 ../APP/..\MCAL\DIO_Driver\DIO_interface.h:
 
@@ -46,3 +53,17 @@ APP/main.d APP/main.o: ../APP/main.c \
 ../APP/../HAL/Servo_Driver/Servo_Interface.h:
 
 ../APP/../LIB/BIT_MATH.h:
+
+d:\colleage\colleage\ programs\atmel\setup\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\delay.h:
+
+d:\colleage\colleage\ programs\atmel\setup\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\delay.h:
+
+d:\colleage\colleage\ programs\atmel\setup\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\inttypes.h:
+
+d:\colleage\colleage\ programs\atmel\setup\7.0\toolchain\avr8\avr8-gnu-toolchain\lib\gcc\avr\5.4.0\include\stdint.h:
+
+d:\colleage\colleage\ programs\atmel\setup\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\stdint.h:
+
+d:\colleage\colleage\ programs\atmel\setup\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\delay_basic.h:
+
+d:\colleage\colleage\ programs\atmel\setup\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\math.h:

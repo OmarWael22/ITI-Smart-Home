@@ -13,7 +13,8 @@ MCAL/USART_Driver/USART_prog.d MCAL/USART_Driver/USART_prog.o: \
  d:\colleage\colleage\ programs\atmel\setup\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\lock.h \
  ../MCAL/USART_Driver/USART_interface.h \
  ../MCAL/USART_Driver/../../LIB/STD_TYPES.h \
- ../MCAL/USART_Driver/../../LIB/BIT_MATH.h
+ ../MCAL/USART_Driver/../../LIB/BIT_MATH.h \
+ ../MCAL/USART_Driver/../WDT_Driver/WDT_interface.h
 
 d:\colleage\colleage\ programs\atmel\setup\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\io.h:
 
@@ -42,3 +43,5 @@ d:\colleage\colleage\ programs\atmel\setup\7.0\toolchain\avr8\avr8-gnu-toolchain
 ../MCAL/USART_Driver/../../LIB/STD_TYPES.h:
 
 ../MCAL/USART_Driver/../../LIB/BIT_MATH.h:
+
+../MCAL/USART_Driver/../WDT_Driver/WDT_interface.h:
