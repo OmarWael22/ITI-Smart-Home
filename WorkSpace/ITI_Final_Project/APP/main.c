@@ -263,20 +263,7 @@ void void_Locker(){
 		}
 		else{
 			LCD_voidSendString("Wrong pass! ");
-			/*Local_u8WrongPassCount++;
-			LCD_voidSendNumber(Local_u8WrongPassCount);
-			LCD_voidSendString("/3");
-			if(Local_u8WrongPassCount==3)
-				{	
-					for(u8 i=30 ; i!=255 ; i-- )
-					{
-						LCD_voidGoTOXY(0,0);
-						LCD_voidSendString("Try Again in ");
-						LCD_voidSendNumber(i);
-						_delay_ms(100);
-					}
-				}
-			}*/
+			
 			// reset the entered password after typing enter
 			
 		}
@@ -449,10 +436,7 @@ ConditionsState USART_voidProcessCommand(u8 command,u8 Local_LightNum) {
 	else if ( command=='0') {
 		// Turning OFF ROOM 1 LIGHT
 		DIO_voidSetPinValue(DIO_PORTC,Local_LightNum,DIO_LOW);
-		LCD_voidSendString("ROOM ");
-		// display the room number
-		LCD_voidSendNumber(Local_LightNum-4);
-		LCD_voidSendString(" is OFF");
+		
 		Con_St = ROOM_LIGHT_OFF;
 	}
 	else{ // IF input is not 0 nor 1 ==> INCORRECT INP
