@@ -1,6 +1,6 @@
 # Smart Home System with AVR Microcontroller
 
-![Project Image](project_image.jpg) <!-- Replace with an image representing your project, if available -->
+
 
 ## Description
 
@@ -48,5 +48,5 @@ This project is open-source and available under the [MIT License](LICENSE).
 
 ## Acknowledgments
 
-Special thanks to [Your Name] for their contributions to this project.
+Special thanks to Amr Elmaghraby, Omar Hani for their contributions to this project.
 
